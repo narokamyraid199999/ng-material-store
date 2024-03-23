@@ -1,0 +1,59 @@
+<mat-card class="w-full">
+  <mat-card-header style="border-top-left-radius: 1rem">
+    <button (click)="openFoodDialog()">
+      <img
+        [src]="food.images[0] ? food.images[0] : food.images[1]"
+        alt="food image"
+        title="food image"
+        style="border-top-left-radius: 0.7rem; border-top-right-radius: 0.7rem"
+        class="w-full"
+      />
+    </button>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="flex justify-between mt-4">
+      <p class="text-red-600 text-lg">
+        {{ food.title | cutPipe : 3 }}
+      </p>
+
+      <button (click)="changeFavStatus(food)">
+        <img
+          *ngIf="!food?.isFavarite"
+          class="w-8"
+          src="assets\food-imgs\empty-heart.jpg"
+          alt=""
+        />
+        <img
+          *ngIf="food?.isFavarite"
+          class="w-8"
+          src="assets\food-imgs\fav-heart.png"
+          alt=""
+        />
+      </button>
+    </div>
+    <div class="flex justify-between items-center">
+      <div>
+        <a [routerLink]="['/category', food.category.name]">
+          <button mat-stroked-button color="link">
+            {{ food.category.name }}
+          </button>
+        </a>
+      </div>
+      <div class="flex items-center gap-x-1">
+        <mat-icon>av_timer</mat-icon>
+        <span class="text-md">15 min</span>
+      </div>
+    </div>
+    <p style="margin-top: 1rem; padding-left: 0.5rem" class="text-lg">
+      {{ food.price | currency }}
+    </p>
+    <button
+      (click)="addToCart(food)"
+      class="capitalize"
+      mat-stroked-button
+      color="accent"
+    >
+      add to cart
+    </button>
+  </mat-card-content>
+</mat-card>

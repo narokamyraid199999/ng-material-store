@@ -1,0 +1,17 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="square-jelly-box"
+  [fullScreen]="true"
+  ><p style="color: white">Loading...</p></ngx-spinner
+>
+<section class="container mx-auto px-[3%]">
+  <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+    <app-food-item
+      data-aos="zoom-in"
+      [food]="food"
+      *ngFor="let food of foods"
+    ></app-food-item>
+  </div>
+</section>

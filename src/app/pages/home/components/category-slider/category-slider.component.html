@@ -1,0 +1,19 @@
+<section style="margin-top: 4rem">
+  <div class="container mx-auto px-[3%]">
+    <owl-carousel-o [options]="customOptions">
+      <ng-template *ngFor="let elm of categories" carouselSlide>
+        <mat-card>
+          <mat-card-content>
+            <img class="rounded-full" [src]="elm.image" alt="category image" />
+            <p
+              class="capitalize text-2xl text-red-500 text-center"
+              style="margin-top: 1rem"
+            >
+              {{ elm.name }}
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </ng-template>
+    </owl-carousel-o>
+  </div>
+</section>

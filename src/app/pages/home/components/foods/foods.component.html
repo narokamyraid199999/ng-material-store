@@ -1,0 +1,83 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="square-jelly-box"
+  [fullScreen]="true"
+  ><p style="color: white">Loading...</p></ngx-spinner
+>
+
+<section class="container mx-auto">
+  <app-search-products (searchEvent)="getSearch($event)"></app-search-products>
+  <div class="grid grid-cols-6 gap-x-8 gap-y-8 mb-20">
+    <div class="col-span-6 md:col-span-2 lg:col-span-1">
+      <mat-card>
+        <mat-card-content>
+          <h2
+            style="margin-bottom: 2rem"
+            class="uppercase text-xl border-b-2 border-red-500"
+          >
+            filter by
+          </h2>
+          <mat-form-field style="margin-bottom: 1rem" class="w-full">
+            <mat-label class="capitalize">categories</mat-label>
+            <mat-select [(ngModel)]="filterCategory">
+              <mat-option value="all">All</mat-option>
+              <mat-option *ngFor="let cat of categories" [value]="cat.name">{{
+                cat.name
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <p class="capitalize text-xl">price range</p>
+          <mat-slider
+            style="width: 100%"
+            min="10"
+            max="1000"
+            step="10"
+            discrete
+            showTickMarks="true"
+            color="accent"
+          >
+            <input [(ngModel)]="minPriceRange" matSliderStartThumb />
+            <input [(ngModel)]="maxPriceRange" matSliderEndThumb />
+          </mat-slider>
+
+          <div>
+            <button
+              class="w-full capitalize"
+              style="padding: 1.2rem 0rem; font-size: 1.2rem"
+              (click)="filter()"
+              mat-raised-button
+              color="primary"
+            >
+              filter
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-span-6 md:col-span-4 lg:col-span-5">
+      <div
+        *ngIf="foods?.length == 0"
+        class="flex items-center justify-center gap-x-2"
+      >
+        <p
+          class="fredoka capitalize md:mt-8 text-xl md:text-4xl border-b-2 text-red-500"
+        >
+          no products!
+        </p>
+        <img class="w-14 md:w-32" src="assets\shared\sadFace.png" alt="" />
+      </div>
+      <div
+        *ngIf="foods && foods?.length > 0"
+        class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+      >
+        <app-food-item
+          data-aos="zoom-in"
+          [food]="food"
+          *ngFor="let food of foods | searchPipe : searchWord"
+        ></app-food-item>
+      </div>
+    </div>
+  </div>
+</section>

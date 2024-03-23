@@ -1,0 +1,70 @@
+<section class="flex h-screen w-full justify-center items-center">
+  <div
+    class="rounded-sm shadow-lg shadow-gray-400 w-[90%] md:w-[50%] lg:w-[30%] p-4"
+  >
+    <div>
+      <div class="my-4">
+        <p
+          *ngIf="errorMsg"
+          class="bg-red-400 text-xl rounded-md text-white px-4 py-2"
+          style="margin-bottom: 2rem"
+        >
+          {{ errorMsg }}
+        </p>
+        <mat-form-field class="w-full">
+          <mat-label class="text-xl capitalize">email</mat-label>
+          <input
+            matInput
+            [(ngModel)]="email"
+            class="text-xl h-14"
+            type="email"
+          />
+        </mat-form-field>
+      </div>
+      <div class="mb-4 mt-8">
+        <mat-form-field class="w-full">
+          <mat-label class="capitalize text-xl">password</mat-label>
+          <input
+            matInput
+            [(ngModel)]="password"
+            class="text-xl"
+            type="password"
+          />
+        </mat-form-field>
+      </div>
+      <div class="flex gap-x-4 items-center">
+        <button
+          style="padding: 1.4rem 1.2rem"
+          mat-raised-button
+          color="accent"
+          (click)="signup(email, password)"
+          class="text-xl"
+        >
+          signup
+        </button>
+        <mat-spinner *ngIf="signupLoader" style="width: 3rem"></mat-spinner>
+      </div>
+
+      <div class="flex justify-between mt-4">
+        <p class="text-blue-600 capitalize text-xl">already have account?</p>
+        <p class="capitalize text-xl">
+          <a routerLink="/password-forget">forget password?</a>
+        </p>
+      </div>
+      <p class="capitalize text-xl mt-1 text-red-600">
+        <a routerLink="/login">login</a>
+      </p>
+      <button
+        (click)="signupWithGoogle()"
+        class="w-full capitalize text-2xl shadow-lg border-t-4 border-orange-300 shadow-gray-300 mb-4 mt-8 py-4 px-2 gap-x-2 flex justify-center items-center"
+      >
+        <img
+          width="30px"
+          height="20px"
+          src="https://static-00.iconduck.com/assets.00/google-icon-2048x2048-czn3g8x8.png"
+          alt=""
+        /><span>sign up with google</span>
+      </button>
+    </div>
+  </div>
+</section>

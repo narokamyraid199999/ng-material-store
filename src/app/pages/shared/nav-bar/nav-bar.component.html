@@ -1,0 +1,89 @@
+<nav class="border-b-2 border-[#d8566b] py-4 quicksand">
+  <div
+    class="flex flex-col md:flex-row gap-y-2 md:gap-y-0 justify-between items-center px-12"
+  >
+    <div class="flex items-center gap-x-2">
+      <p class="text-3xl capitalize fredoka text-orange-500 select-none">
+        ng<span class="uppercase">s</span>tore
+      </p>
+    </div>
+    <a routerLinkActive="" routerLink="/">
+      <button
+        class="px-4 py-2 select-none capitalize h-14 hover:bg-red-500 hover:text-white text-2xl text-red-500"
+      >
+        home
+      </button></a
+    >
+
+    <div class="mr-4">
+      <!-- <a *ngIf="isLogedIn">
+        <button
+          (click)="signout()"
+          class="px-4 py-2 capitalize h-14 hover:bg-red-500 hover:text-white text-lg text-red-500"
+        >
+          signout
+        </button></a
+      > -->
+
+      <a *ngIf="!isLogedIn" routerLink="/login">
+        <button
+          class="px-4 py-2 capitalize h-14 hover:bg-red-500 hover:text-white text-lg text-red-500"
+        >
+          login
+        </button></a
+      >
+
+      <button
+        *ngIf="isLogedIn"
+        [matMenuTriggerFor]="userMenui"
+        class="px-4 py-2 capitalize h-14 hover:bg-red-500 hover:text-white text-lg text-red-500"
+      >
+        <mat-icon>supervised_user_circle</mat-icon>
+      </button>
+      <mat-menu #userMenui>
+        <div style="display: flex; flex-direction: column">
+          <!-- <button
+            class="pr-8 py-2 capitalize h-14 hover:bg-red-500 hover:text-white text-lg text-red-500"
+          >
+            <a routerLink="/profile">profile</a>
+          </button>
+          <button
+            class="pr-8 py-2 capitalize h-14 hover:bg-red-500 hover:text-white text-lg text-red-500"
+          >
+            <a routerLink="/orders">orders</a>
+          </button> -->
+          <button
+            (click)="signout()"
+            class="pr-8 py-2 capitalize h-14 hover:bg-red-500 hover:text-white text-lg text-red-500"
+          >
+            logout
+          </button>
+        </div>
+      </mat-menu>
+      <ng-container *ngIf="isLogedIn">
+        <a routerLink="/wishlist">
+          <button
+            class="px-4 py-2 capitalize h-14 hover:bg-red-500 hover:text-white text-lg text-red-500"
+          >
+            <mat-icon>favorite_border</mat-icon>
+            <span
+              [matBadgeHidden]="badgeHidden"
+              matBadgeColor="accent"
+              [matBadge]="wishlistBadgeValue"
+            ></span></button
+        ></a>
+        <a routerLink="/cart">
+          <button
+            class="px-4 py-2 capitalize h-14 hover:bg-red-500 hover:text-white text-lg text-red-500"
+          >
+            <mat-icon>shopping_cart</mat-icon>
+            <span
+              [matBadgeHidden]="badgeHidden"
+              matBadgeColor="accent"
+              [matBadge]="cartBadgeValue"
+            ></span></button
+        ></a>
+      </ng-container>
+    </div>
+  </div>
+</nav>
